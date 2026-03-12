@@ -11,6 +11,9 @@ def emotionDetector():
 
     response = emotion_detector(text_to_analyze)
 
+    if response['dominant_emotion'] is None:
+        return "Invalid text! Please try again."
+
     anger = response['anger']
     disgust = response['disgust']
     fear = response['fear']
@@ -18,16 +21,9 @@ def emotionDetector():
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
 
-    result = {
-        "anger": anger,
-        "disgust": disgust,
-        "fear": fear,
-        "joy": joy,
-        "sadness": sadness,
-        "dominant_emotion": dominant_emotion
-    }
+    result = f"For the given statement, the system response is 'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}. The dominant emotion is {dominant_emotion}."
 
-    return jsonify(result)
+    return result
 
 
 if __name__ == "__main__":
